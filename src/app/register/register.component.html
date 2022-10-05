@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="child">
+    <h2>Register!</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="save()">
+
+      <mat-form-field class="example-full-width" >
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="First name (required)" formControlName="firstName">
+        <div *ngIf="registerForm.get('firstName').invalid && registerForm.get('firstName').errors &&
+        (registerForm.get('firstName').dirty || registerForm.get('firstName').touched)">
+          <small class="text-danger"
+              *ngIf="registerForm.get('firstName').hasError('required')">
+              This field is required.
+          </small>
+          <small class="text-danger"
+              *ngIf="registerForm.get('firstName').hasError('minlength')">
+              The minimum length for this field is {{registerForm.get('firstName').errors['minlength'].requiredLength}} characters.
+          </small>
+          <small class="text-danger"
+              *ngIf="registerForm.get('firstName').hasError('maxlength')">
+              The maximum length for this field is {{registerForm.get('firstName').errors['maxlength'].requiredLength}} characters.
+          </small>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" >
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Last name (required)" formControlName="lastName">
+        <div *ngIf="registerForm.get('lastName').invalid && registerForm.get('lastName').errors &&
+        (registerForm.get('lastName').dirty || registerForm.get('lastName').touched)">
+          <small class="text-danger"
+              *ngIf="registerForm.get('lastName').hasError('required')">
+              This field is required.
+          </small>
+          <small class="text-danger"
+              *ngIf="registerForm.get('lastName').hasError('minlength')">
+              The minimum length for this field is {{registerForm.get('lastName').errors['minlength'].requiredLength}} characters.
+          </small>
+          <small class="text-danger"
+              *ngIf="registerForm.get('lastName').hasError('maxlength')">
+              The maximum length for this field is {{registerForm.get('lastName').errors['maxlength'].requiredLength}} characters.
+          </small>
+        </div>
+      </mat-form-field>
+
+    <mat-form-field class="example-full-width" >
+      <mat-label>Email Address</mat-label>
+      <input matInput type="email" placeholder="Ex. robbie.migueh@kiandra.com.au" formControlName="email">
+      <div *ngIf="registerForm.get('email').invalid && registerForm.get('email').errors &&
+      (registerForm.get('email').dirty || registerForm.get('email').touched)">
+        <small class="text-danger"
+            *ngIf="registerForm.get('email').hasError('required')">
+            This field is required.
+        </small>
+      </div>
+    </mat-form-field>
+
+
+    <mat-form-field class="example-full-width" >
+      <mat-label>Password</mat-label>
+      <input matInput type="password" placeholder="Password (required)" formControlName="password">
+      <div *ngIf="registerForm.get('password').invalid && registerForm.get('password').errors &&
+      (registerForm.get('password').dirty || registerForm.get('password').touched)">
+        <small class="text-danger"
+            *ngIf="registerForm.get('password').hasError('required')">
+            This field is required.
+        </small>
+      </div>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid" routerLinkActive="router-link-active" >
+      Register
+    </button>
+
+    <button type="button" mat-raised-button color="accent" (click)="populateForm()">
+      Test Data
+    </button>
+    </form>
+  </div>
+</div>
+<br>Valid: {{registerForm.valid}}
+<br>Value: {{registerForm.value | json}}
