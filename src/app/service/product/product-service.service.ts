@@ -37,6 +37,12 @@ export class ProductServiceService {
       price: '4000',
       brand: 'Apple'
     },
+    {
+      productID:'5',
+      name:'IPhone 15 Pro Max',
+      price: '4000',
+      brand: 'Apple'
+    }
   ];
   return this.products;
     //return this.http.get<Product[]>('https://putsreq.com/15B7WN0uiYhvfOg8AmIF');
