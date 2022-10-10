@@ -1,7 +1,7 @@
-import { map, Observable } from 'rxjs';
+import { first, map, Observable, tap } from 'rxjs';
 import { ProductServiceService } from './../service/product/product-service.service';
 import { Component, NgIterable, OnInit } from '@angular/core';
-import { Product } from '../data/Product';
+import { Product } from '../data/product';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { Product } from '../data/Product';
 })
 export class ProductComponent implements OnInit {
   cartMessage:string;
-  products!: Product[];
+  products: Product[] = [];
   constructor(private _productService: ProductServiceService) { }
 
   ngOnInit(): void {
@@ -20,7 +20,13 @@ export class ProductComponent implements OnInit {
 
   getProductList(){
 
-   this.products = this._productService.getProducts();
+   this._productService.getProducts()
+   .subscribe({
+    next: results => {
+      this.products = results;
+      console.log('Data returned: ', results);
+    }
+   })
     // this._productService.getProducts().subscribe({
     //   next(data){
     //     this.products = data;

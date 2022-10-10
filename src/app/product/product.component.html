@@ -1,5 +1,5 @@
 
-  <h2>Products</h2>
+  <h2>Products</h2><hr>
     <div *ngFor="let prod of products">
       <app-product-child [product]="prod" (childOutput)="buyEventClicked($event)">
     </app-product-child>
